@@ -85,4 +85,26 @@ img {
   background: #65d;
   transform: scale(1.1);
 }
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0px, -30px, 0px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-60px, 0px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: rotate3d(0, 0, 0);
+  }
+}
 </style>

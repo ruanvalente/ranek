@@ -25,5 +25,6 @@ h1 {
   font-size: 2rem;
   text-align: center;
   margin-top: 40px;
+  animation: fade-down 1s forwards;
 }
 </style>
