@@ -54,6 +54,26 @@ img {
   display: block;
 }
 
+input, textarea {
+  border-radius: 4px;
+  border: 1px solid #fff;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(30, 60, 90, 0.1);
+  transition: all 0.3s;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 15px;
+}
+
+input:focus,
+input:hover,
+textarea:focus,
+textarea:hover {
+  outline: none;
+  box-shadow: 0px 8px 12px rgba(30, 60, 90, 0.2);
+  border-color: #87f;
+}
+
 #app {
   display: flex;
   flex-direction: column;
