@@ -15,10 +15,14 @@
 
 <script>
 import { API } from '@/services/api.js'
+import { serialize } from '@/helpers/serialize.js'
 export default {
   name: 'ProductList',
   data: () => ({
-    products: []
+    products: [],
+    pagination: {
+      limit: 5
+    }
   }),
   filters: {
     formatPrice (value) {
@@ -28,9 +32,20 @@ export default {
       })
     }
   },
+  computed: {
+    url () {
+      const query = serialize(this.$route.query)
+      return `?_limit=${this.pagination.limit}${query}`
+    }
+  },
+  watch: {
+    url () {
+      this.getProducts()
+    }
+  },
   methods: {
     getProducts () {
-      API.get('/product')
+      API.get(`/product/${this.url}`)
         .then((result) => {
           this.products = result.data
         })
