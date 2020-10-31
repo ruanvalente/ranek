@@ -1,13 +1,29 @@
 <template>
-  <div class="home">
-
-  </div>
+  <section>
+    <h1>Compre ou Venda</h1>
+    <SearchProduct />
+    <ProductList />
+  </section>
 </template>
 
 <script>
-// @ is an alias to /src
+import SearchProduct from '@/components/product/SearchProduct.vue'
+import ProductList from '@/components/product/ProductList.vue'
 
 export default {
-  name: 'PageHome'
+  name: 'Home',
+  components: {
+    SearchProduct,
+    ProductList
+  }
 }
 </script>
+
+<style scoped>
+h1 {
+  color: #64f;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 40px;
+}
+</style>

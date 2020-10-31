@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "email@email.com",
+      "name": "Ruan Valente",
+      "password": "123",
+      "street": "Uma rua sem saida qualquer",
+      "zip_code": "123456",
+      "number": 2,
+      "state": "PA",
+      "city": "Belém"
+    }
+  ],
+  "product": [
+    {
+      "id": 52,
+      "name": "Notebook",
+      "user_id": 1,
+      "price": "2999",
+      "description": "Aqui vem a descrição do produto",
+      "photo": null
+    },
+    {
+      "id": 87,
+      "name": "Tablet",
+      "user_id": 1,
+      "price": "1999",
+      "description": "Aqui vem a descrição do produto",
+      "photo": null
+    },
+    {
+      "id": 90,
+      "name": "Memória RAM",
+      "user_id": 1,
+      "price": "400",
+      "description": "Aqui vem a descrição do produto",
+      "photo": null
+    }
+  ]
+}
