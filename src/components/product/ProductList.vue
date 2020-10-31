@@ -1,7 +1,11 @@
 <template>
   <section class="product-container">
     <div v-for="product in products" :key="product.id" class="product">
-      <img v-if="product.photo" :src="product.photo[0].src" :alt="product.photo[0].title">
+      <img
+        v-if="product.photo"
+        :src="product.photo[0].src"
+        :alt="product.photo[0].title"
+      />
       <p class="product-price">{{ product.price }}</p>
       <h2 class="product-title">{{ product.name }}</h2>
       <p class="product-description">{{ product.description }}</p>
@@ -10,6 +14,7 @@
 </template>
 
 <script>
+import { API } from '@/services/api.js'
 export default {
   name: 'ProductList',
   data: () => ({
@@ -24,17 +29,16 @@ export default {
     }
   },
   methods: {
-    getProducts (url) {
-      return fetch(url)
-        .then((response) => response.json())
+    getProducts () {
+      API.get('/product')
         .then((result) => {
-          this.products = result
+          this.products = result.data
         })
         .catch((error) => error)
     }
   },
-  mounted () {
-    this.getProducts('http://localhost:3000/product')
+  created () {
+    this.getProducts()
   }
 }
 </script>
