@@ -11,6 +11,7 @@
         <h2 class="product-title">{{ product.name }}</h2>
         <p class="product-description">{{ product.description }}</p>
       </div>
+      <Paginate :pagination="pagination" />
     </div>
 
     <div v-else-if="products && products.length === 0">
@@ -18,18 +19,28 @@
         Sem resultados para a busca. Tente usando outro termo.
       </p>
     </div>
+    <div v-if="loading">
+      <Loading />
+    </div>
   </section>
 </template>
 
 <script>
+import Paginate from '@/components/product/Paginate'
+import Loading from '@/components/Loading'
 import { API } from '@/services/api.js'
 import { serialize } from '@/helpers/serialize.js'
 export default {
   name: 'ProductList',
+  components: { Paginate, Loading },
   data: () => ({
     products: [],
+    loading: true,
     pagination: {
-      limit: 5
+      page: 1,
+      total: 0,
+      limit: 3,
+      rowsPerPage: 3
     }
   }),
   filters: {
@@ -55,6 +66,7 @@ export default {
     getProducts () {
       API.get(`/product/${this.url}`)
         .then((result) => {
+          this.pagination.total = parseInt(result.headers['x-total-count'])
           this.products = result.data
         })
         .catch((error) => error)
@@ -78,7 +90,6 @@ export default {
   grid-gap: 30px;
   margin: 30px;
   animation: fade-left 1s forwards;
-
 }
 .product {
   box-shadow: 0px 4px 8px rgba(30, 60, 90, 0.2);
