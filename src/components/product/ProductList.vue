@@ -19,7 +19,7 @@
         Sem resultados para a busca. Tente usando outro termo.
       </p>
     </div>
-    <div v-if="loading">
+    <div v-else>
       <Loading />
     </div>
   </section>
@@ -27,12 +27,11 @@
 
 <script>
 import Paginate from '@/components/product/Paginate'
-import Loading from '@/components/Loading'
 import { API } from '@/services/api.js'
 import { serialize } from '@/helpers/serialize.js'
 export default {
   name: 'ProductList',
-  components: { Paginate, Loading },
+  components: { Paginate },
   data: () => ({
     products: [],
     loading: true,
@@ -64,12 +63,15 @@ export default {
   },
   methods: {
     getProducts () {
-      API.get(`/product/${this.url}`)
-        .then((result) => {
-          this.pagination.total = parseInt(result.headers['x-total-count'])
-          this.products = result.data
-        })
-        .catch((error) => error)
+      this.products = null
+      window.setTimeout(() => {
+        API.get(`/product/${this.url}`)
+          .then((result) => {
+            this.pagination.total = parseInt(result.headers['x-total-count'])
+            this.products = result.data
+          })
+          .catch((error) => error)
+      }, 2000)
     }
   },
   created () {
@@ -125,5 +127,6 @@ export default {
   color: #e80;
   text-align: center;
   margin-top: 40px;
+  animation: fade-down 0.6s forwards;
 }
 </style>

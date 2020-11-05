@@ -3,18 +3,17 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/Home.vue')
-  }
-]
-
-const router = new VueRouter({
+export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: () => import('@/views/Home.vue')
+    }
+  ],
+  scrollBehavior () {
+    return window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 })
-
-export default router
