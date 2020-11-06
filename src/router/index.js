@@ -11,6 +11,12 @@ export default new VueRouter({
       path: '/',
       name: 'Home',
       component: () => import('@/views/Home.vue')
+    },
+    {
+      path: '/produto/:id',
+      name: 'product',
+      props: true,
+      component: () => import('@/views/product/Product.vue')
     }
   ],
   scrollBehavior () {

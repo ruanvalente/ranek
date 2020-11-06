@@ -49,6 +49,10 @@ a {
   color: #345;
 }
 
+button:disabled {
+  opacity: 0.7;
+}
+
 img {
   max-width: 100%;
   display: block;

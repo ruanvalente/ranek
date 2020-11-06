@@ -1,8 +1,8 @@
 <template>
   <ul v-if="totalPage > 1" class="pagination-item">
-    <li v-for="page in paginationRange" :key="page">
-      <span v-if="page === '...'">{{ page }}</span>
-      <router-link v-if="page !== '...'" :to="{ query: query(page) }"
+    <li v-for="(page, index) in paginationRange" :key="index">
+      <span v-if="page === ''">{{ page }}</span>
+      <router-link v-if="page !== ''" :to="{ query: query(page) }"
         >{{ page }}
       </router-link>
     </li>
@@ -93,7 +93,7 @@ export default {
           ellipsesNeeded &&
           (openingEllipsesNeeded || closingEllipsesNeeded)
         ) {
-          pages.push('...')
+          pages.push('')
         } else {
           pages.push(pageNumber)
         }

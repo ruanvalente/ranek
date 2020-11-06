@@ -2,14 +2,16 @@
   <section class="products-container">
     <div v-if="products && products.length" class="products">
       <div v-for="product in products" :key="product.id" class="product">
-        <img
-          v-if="product.photo"
-          :src="product.photo[0].src"
-          :alt="product.photo[0].title"
-        />
-        <p class="product-price">{{ product.price }}</p>
-        <h2 class="product-title">{{ product.name }}</h2>
-        <p class="product-description">{{ product.description }}</p>
+        <router-link :to="{name: 'product', params: {id: product.id }}">
+          <img
+            v-if="product.photo"
+            :src="product.photo[0].src"
+            :alt="product.photo[0].title"
+          />
+          <p class="product-price">{{ product.price | formatPrice }}</p>
+          <h2 class="product-title">{{ product.name }}</h2>
+          <p class="product-description">{{ product.description }}</p>
+        </router-link>
       </div>
       <Paginate :pagination="pagination" />
     </div>
@@ -42,14 +44,6 @@ export default {
       rowsPerPage: 3
     }
   }),
-  filters: {
-    formatPrice (value) {
-      return value.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      })
-    }
-  },
   computed: {
     url () {
       const query = serialize(this.$route.query)
