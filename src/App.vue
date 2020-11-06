@@ -2,7 +2,9 @@
   <div id="app">
     <TheHeader />
     <main class="main">
-      <router-view />
+      <transition name="fade" mode="out-in">
+        <router-view />
+      </transition>
     </main>
     <TheFooter />
   </div>
@@ -58,7 +60,8 @@ img {
   display: block;
 }
 
-input, textarea {
+input,
+textarea {
   border-radius: 4px;
   border: 1px solid #fff;
   padding: 15px;
@@ -130,5 +133,17 @@ textarea:hover {
     opacity: 1;
     transform: rotate3d(0, 0, 0);
   }
+}
+
+/** Transition Vue */
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
