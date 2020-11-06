@@ -39,7 +39,7 @@ form {
 }
 
 #lupa {
-  width: 62px;
+  width: 106px;
   height: 62px;
   background: url('../../assets/search.svg') no-repeat center center;
   text-indent: -150px;
