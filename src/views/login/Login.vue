@@ -34,7 +34,8 @@ export default {
   }),
   methods: {
     signIn () {
-      console.log('logou')
+      this.$store.dispatch('getUser', this.login.email)
+      this.$router.push('/profile')
     }
   }
 }
@@ -49,6 +50,7 @@ export default {
 
 .login-form {
   display: grid;
+  animation: fade-left 1s forwards;
 }
 
 .login h2 {
@@ -56,6 +58,7 @@ export default {
   text-align: center;
   font-size: 2rem;
   color: #87f;
+  animation: fade-down 1s forwards;
 }
 
 .login-form label {

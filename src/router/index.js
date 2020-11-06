@@ -22,6 +22,11 @@ export default new VueRouter({
       path: '/login',
       name: 'login',
       component: () => import('@/views/login/Login.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/views/profile/Profile.vue')
     }
   ],
   scrollBehavior () {
