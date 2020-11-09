@@ -56,16 +56,17 @@ export default {
     }
   },
   methods: {
-    getProducts () {
-      this.products = null
-      window.setTimeout(() => {
-        API.get(`/product/${this.url}`)
-          .then((result) => {
-            this.pagination.total = parseInt(result.headers['x-total-count'])
-            this.products = result.data
-          })
-          .catch((error) => error)
-      }, 2000)
+    async getProducts () {
+      try {
+        this.products = null
+        window.setTimeout(async () => {
+          const response = await API.get(`/product/${this.url}`)
+          this.pagination.total = parseInt(response.headers['x-total-count'])
+          this.products = response.data
+        }, 2000)
+      } catch (error) {
+        console.error(error.messager)
+      }
     }
   },
   created () {
