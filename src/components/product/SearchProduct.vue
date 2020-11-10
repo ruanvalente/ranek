@@ -28,7 +28,7 @@ form {
 }
 
 #search {
-  width: 100vh;
+  width: 100%;
   padding: 20px;
   border: none;
 }

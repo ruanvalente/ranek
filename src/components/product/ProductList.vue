@@ -124,4 +124,10 @@ export default {
   margin-top: 40px;
   animation: fade-down 0.6s forwards;
 }
+
+@media only screen and (max-width: 605px) {
+ .products{
+    grid-template-columns: none;
+  }
+}
 </style>
