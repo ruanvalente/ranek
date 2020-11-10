@@ -60,13 +60,8 @@ img {
   display: block;
 }
 
-select {
-  background-color: #fff;
-}
-
 input,
-textarea,
-select {
+textarea {
   border-radius: 4px;
   border: 1px solid #fff;
   padding: 15px;
@@ -79,8 +74,6 @@ select {
 
 input:focus,
 input:hover,
-select:focus,
-select:hover,
 textarea:focus,
 textarea:hover {
   outline: none;
