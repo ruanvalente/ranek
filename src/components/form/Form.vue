@@ -14,7 +14,7 @@
       v-model="password"
     />
     <label for="cep">Cep</label>
-    <input type="text" name="cep" id="cep" v-model="zipCode" />
+    <input type="text" name="cep" id="cep" maxlength="8" v-model="zipCode" @keyup.enter="findZipCode"/>
 
     <label for="street">Rua</label>
     <input type="text" name="street" id="street" v-model="street" />
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import cep from 'cep-promise'
 import { mapFields } from '@/helpers/mapFields.js'
 export default {
   name: 'Form',
@@ -52,6 +53,21 @@ export default {
       base: 'user',
       mutation: 'SET_USER'
     })
+  },
+  methods: {
+    async findZipCode () {
+      try {
+        const response = await cep(this.zipCode)
+
+        this.street = response.street
+        this.city = response.city
+        this.state = response.state
+        this.neighborhood = response.neighborhood
+        this.zipCode = response.cep
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 }
 </script>
@@ -67,5 +83,9 @@ export default {
 
 .button-create {
   grid-column: 2;
+}
+
+.login-form label {
+  font-weight: bold;
 }
 </style>
